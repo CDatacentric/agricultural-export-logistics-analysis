@@ -350,7 +350,7 @@ Data Analyst
 ---
 
 ## Connect With Me
-![My Portrait](images/my-portrait.png)
+<img src="images/my-portrait.png" alt="Chukwuemeka Onyekaodiri" width="150">
 
 **Portfolio:** https://www.chukwuemekaonyekaodiri.com/
 
