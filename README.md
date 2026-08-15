@@ -8,6 +8,7 @@
 
 ![Agricultural Export & Logistics Dashboard](images/dashboard-preview.png)
 
+---
 ## Project Overview
 
 This project analyzes agricultural export and logistics transactions to evaluate the company's financial performance, operational efficiency, product and market performance, supplier contribution, and customer experience.
@@ -18,13 +19,14 @@ The analysis culminated in an interactive executive dashboard that brings key fi
 
 The project also documents the analytical decisions made during data preparation, including the validation of financial calculations and the investigation and treatment of 152 missing Shipping Cost values.
 
-## 🎯 Business Problem
+---
+## Business Problem
 
 Management believes that valuable business opportunities and operational problems may be hidden within the company's transactional data. The objective of this analysis was to examine the business from both financial and operational perspectives, identify the factors contributing to overall performance, and uncover areas requiring further investigation.
 
 The analysis focused on financial performance, product and market contribution, supplier performance, changes across time, logistics measures such as shipping cost, processing time and delivery delays, and customer satisfaction. The goal was to transform the available transaction data into reliable analysis, clear business findings, and evidence-based recommendations that could support better business decision-making.
 
-# 🔎 Key Business Questions Explored
+# Key Business Questions Explored
 
 The analysis was guided by the following business questions:
 
