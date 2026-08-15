@@ -64,7 +64,8 @@ Gross Revenue = Quantity × Unit Price
 ```
 
 I then recalculated Net Revenue after applying the recorded discount percentage:
-```Net Revenue = Gross Revenue - (Gross Revenue × Discount Percentage)
+```text
+Net Revenue = Gross Revenue - (Gross Revenue × Discount Percentage)
 ```
 
 These calculations were important because Revenue is a business-critical metric that feeds directly into profitability and performance analysis. Validating the figures before building the dashboard increased confidence that the subsequent analysis was based on internally consistent financial values.
@@ -110,7 +111,8 @@ After investigating Shipping Method, I looked for a variable that could provide 
 I selected Product Name because products can have different handling, packaging, and transportation characteristics. Rather than assuming that all shipments using the same transportation method would have comparable costs, I investigated whether the existing Shipping Cost records could be used to calculate an average unit shipping cost for each product.
 
 The first step was to calculate:
-```Unit Shipping Cost = Shipping Cost ÷ Quantity
+```text
+Unit Shipping Cost = Shipping Cost ÷ Quantity
 ```
 ![Unit Shipping Cost](images/unit-shipping-cost.png)
 This converted the available Shipping Cost values into a comparable per-unit measure.
@@ -132,7 +134,8 @@ This step was important because it allowed the estimation process to use informa
 # Estimating the Missing Shipping Costs
 
 After merging the product-level average unit shipping cost into the main dataset, I created an estimated Shipping Cost using:
-```Estimated Shipping Cost = Quantity × Average Unit Shipping Cost for Product
+```text
+Estimated Shipping Cost = Quantity × Average Unit Shipping Cost for Product
 ```
 ![Estimating Shipping Cost](images/estimating-shipping-cost.png)
 The purpose of this calculation was not to replace the original Shipping Cost values. It was specifically designed to estimate values only where the original Shipping Cost was missing.
@@ -140,7 +143,8 @@ The purpose of this calculation was not to replace the original Shipping Cost va
 I therefore created a final conditional field that preserved existing Shipping Cost values and used the estimated value only when the original field contained a null value.
 
 Conceptually, the logic was:
-```If Shipping Cost is null
+```text
+If Shipping Cost is null
     → use Estimated Shipping Cost
 Otherwise
     → retain the original Shipping Cost
@@ -165,7 +169,8 @@ The approach is based on the assumption that shipments of the same product gener
 Once the Shipping Cost issue had been addressed, I revisited Net Profit because the value depends directly on several cost components.
 
 I recalculated Net Profit using:
-```Net Profit = Net Revenue - (Shipping Cost + Production Cost + Insurance Cost + Taxes)
+```text
+Net Profit = Net Revenue - (Shipping Cost + Production Cost + Insurance Cost + Taxes)
 ```
 ![Re-Calculated Net Profit](images/recalculated-net-profit.png)
 This ensured that the profitability analysis reflected the final Shipping Cost values after the missing-value treatment.
