@@ -28,7 +28,7 @@ This hierarchy helped determine where each element should be placed.
 
 Before building the final dashboard, I created a wireframe to establish the layout and positioning of the main components.
 
-![Dashboard Wireframe](../images/Agricultural_Export_Logistics_Analysis WireFrame.png)
+![Dashboard Wireframe](../images/agricultural-export-logistics-analysis-wireframe.png)
 
 The wireframe allowed me to make decisions about the dashboard structure before spending time on formatting, colors, chart styling, and other visual details.
 
