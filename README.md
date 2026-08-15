@@ -26,6 +26,7 @@ Management believes that valuable business opportunities and operational problem
 
 The analysis focused on financial performance, product and market contribution, supplier performance, changes across time, logistics measures such as shipping cost, processing time and delivery delays, and customer satisfaction. The goal was to transform the available transaction data into reliable analysis, clear business findings, and evidence-based recommendations that could support better business decision-making.
 
+---
 # Key Business Questions Explored
 
 The analysis was guided by the following business questions:
@@ -42,7 +43,8 @@ The analysis was guided by the following business questions:
 
 6. **Which areas of the business require further investigation before management makes a decision?**
 
-7. ## 📊 Data Source & Dataset Overview
+---
+## Data Source & Dataset Overview
 
 ### Data Source
 
@@ -68,3 +70,36 @@ Because the dataset is synthetic, the findings should be interpreted as **analyt
 | Visualization | Excel Dashboard |
 
 The dataset contains information covering customers, suppliers, products, countries, orders, quantities, pricing, revenue, costs, shipping, delivery performance, and customer satisfaction. These fields provided the basis for evaluating both financial and operational performance.
+
+---
+## Data Preparation & Cleaning
+
+Before beginning the analysis, I used Power Query to assess the dataset for missing values, inconsistencies, calculation issues, and structural problems that could affect the reliability of the final analysis.
+
+The cleaning process was not limited to removing blanks or changing data types. Several issues required investigation before deciding how they should be handled. I focused on preserving valid business records wherever possible, validating business-critical calculations, documenting assumptions, and creating a clean transformation workflow that could support the analysis that followed.
+
+### 1. Dataset Structuring
+
+The dataset contained a mixture of descriptive and measurable information. I first organized the fields conceptually into information used to identify or describe transactions—such as customers, suppliers, products, and countries—and measurable information such as quantity, revenue, costs, delivery performance, and satisfaction.
+
+This helped establish how the available fields could be used during aggregation and exploratory analysis and provided a clearer structure for the subsequent cleaning and transformation process.
+
+### 2. Missing Customer Names
+
+**Issue:**  
+The `Customer Name` column contained 101 missing values.
+
+**Approach:**  
+Rather than deleting the affected transactions, I replaced the missing values with `Unknown`.
+
+**Reasoning:**  
+Customer Name was useful for customer-level analysis but was not required for the core revenue, profitability, logistics, or operational calculations. Replacing the missing values allowed the valid transactions to remain in the dataset while making the missing information transparent rather than attempting to infer customer identities.
+
+### 3. Financial Data Validation
+
+Before relying on the financial fields for analysis, I independently recalculated key metrics to verify that the supplied figures were internally consistent.
+
+**Gross Revenue**
+
+```text
+Quantity × Unit Price
