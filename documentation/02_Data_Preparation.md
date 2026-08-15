@@ -177,7 +177,8 @@ The recalculation was important because an incomplete Shipping Cost field could 
 I also identified inconsistencies in the Profit Margin values and therefore recalculated the metric rather than relying on the original values.
 
 The calculation used was:
-```Profit Margin (%) = Net Profit ÷ Net Revenue
+```text
+Profit Margin (%) = Net Profit ÷ Net Revenue
 ```
 ![Re-Calculated Profit Margin](images/recalculated-profit-margin.png)
 This created a consistent profitability measure that could be aggregated and used in the final analytical framework.
