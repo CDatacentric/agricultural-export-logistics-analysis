@@ -91,13 +91,13 @@ I therefore separated the records by Shipping Method and investigated the relati
 I investigated Air, Road, and Sea separately rather than assuming that the three methods followed the same pricing pattern.
 
 ## Air Shipping Investigation
-![Filtered Shipping Method by Air](images/filtered-shipping-method-by-air.png)
+![Filtered Shipping Method by Air](../images/filtered-shipping-method-by-air.png)
 
 ## Road Shipping Investigation
-![Filtered Shipping Method by Road](images/filtered-shipping-method-by-road.png)
+![Filtered Shipping Method by Road](../images/filtered-shipping-method-by-road.png)
 
 ## Sea Shipping Investigation
-![Filtered Shipping Method by Sea](images/filtered-shipping-method-by-sea.png)
+![Filtered Shipping Method by Sea](../images/filtered-shipping-method-by-sea.png)
 
 
 The investigation showed that Shipping Cost varied considerably even within the same shipping method. Similar quantities could have significantly different shipping costs, and the observed values did not provide a sufficiently consistent unit-cost relationship that would allow Shipping Method alone to be used as a reliable estimator.
@@ -114,7 +114,7 @@ The first step was to calculate:
 ```text
 Unit Shipping Cost = Shipping Cost ÷ Quantity
 ```
-![Unit Shipping Cost](images/unit-shipping-cost.png)
+![Unit Shipping Cost](../images/unit-shipping-cost.png)
 This converted the available Shipping Cost values into a comparable per-unit measure.
 
 I then created a duplicate query and grouped the available records by Product Name to calculate the **Average Unit Shipping Cost** for each product. This created a product-level lookup table that could be used to estimate the missing values.
@@ -122,7 +122,7 @@ I then created a duplicate query and grouped the available records by Product Na
 The resulting calculation created fields including **Unit Shipping Cost, Average by Product, Estimated Shipping Cost, and Final Shipping Cost**. The screenshot demonstrates how the calculated values were brought together during the transformation process.
 
 # Merging the Product-Level Lookup Table
-![Merged Unit Shipping Cost](images/merged-unit-shipping-cost.png)
+![Merged Unit Shipping Cost](../images/merged-unit-shipping-cost.png)
 Once the average unit shipping cost had been calculated for each product, I needed to bring those values back into the main dataset.
 
 I used a Merge Queries operation based on `Product_Name`, using a Left Outer Join so that every record in the main dataset would remain available while matching product-level averages were retrieved from the lookup table.
@@ -137,7 +137,7 @@ After merging the product-level average unit shipping cost into the main dataset
 ```text
 Estimated Shipping Cost = Quantity × Average Unit Shipping Cost for Product
 ```
-![Estimating Shipping Cost](images/estimating-shipping-cost.png)
+![Estimating Shipping Cost](../images/estimating-shipping-cost.png)
 The purpose of this calculation was not to replace the original Shipping Cost values. It was specifically designed to estimate values only where the original Shipping Cost was missing.
 
 I therefore created a final conditional field that preserved existing Shipping Cost values and used the estimated value only when the original field contained a null value.
@@ -149,7 +149,7 @@ If Shipping Cost is null
 Otherwise
     → retain the original Shipping Cost
 ```
-![Final Shipping Cost](images/final-shipping-cost.png)
+![Final Shipping Cost](../images/final-shipping-cost.png)
 This resulted in a Final Shipping Cost field that combined the valid original values with the estimates required for the previously missing records.
 
 This approach allowed me to preserve the original source information wherever it existed while providing a transparent and consistent method for addressing the missing values.
@@ -172,7 +172,7 @@ I recalculated Net Profit using:
 ```text
 Net Profit = Net Revenue - (Shipping Cost + Production Cost + Insurance Cost + Taxes)
 ```
-![Re-Calculated Net Profit](images/recalculated-net-profit.png)
+![Re-Calculated Net Profit](../images/recalculated-net-profit.png)
 This ensured that the profitability analysis reflected the final Shipping Cost values after the missing-value treatment.
 
 The recalculation was important because an incomplete Shipping Cost field could otherwise flow into Net Profit and produce misleading profitability results.
@@ -185,7 +185,7 @@ The calculation used was:
 ```text
 Profit Margin (%) = Net Profit ÷ Net Revenue
 ```
-![Re-Calculated Profit Margin](images/recalculated-profit-margin.png)
+![Re-Calculated Profit Margin](../images/recalculated-profit-margin.png)
 This created a consistent profitability measure that could be aggregated and used in the final analytical framework.
 
 # Removing Duplicate Records
