@@ -100,14 +100,12 @@ to:
 
 This is an example of why trend analysis is important. A single overall KPI can show the current position, but year-over-year comparison can reveal the direction in which the business is moving.
 
+### 2024 Performance
 ![2024 Performance Dashboard](../images/2024-performance-dashboard.png)
-## 2024 Performance
+### 2025 Performance
 ![2025 Performance Dashboard](../images/2025-performance-dashboard.png)
-## 2025 Performance
 
 ---
-
-# Quarterly Performance
 
 # Quarterly Performance
 
