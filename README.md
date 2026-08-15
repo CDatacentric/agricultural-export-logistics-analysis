@@ -103,3 +103,51 @@ Before relying on the financial fields for analysis, I independently recalculate
 
 ```text
 Quantity × Unit Price
+
+**Net Revenue**
+```Gross Revenue − (Gross Revenue × Discount Percentage)
+
+**Net Profit**
+```Net Revenue − (Shipping Cost + Production Cost + Insurance Cost + Taxes)
+
+**Profit Margin**
+```Net Profit ÷ Net Revenue
+
+These calculations helped verify the financial logic before the figures were used in PivotTables, KPI calculations, and dashboard analysis.
+
+### 4. Handling Missing Shipping Cost Values
+
+One of the most important data-quality issues I encountered was the presence of 152 missing Shipping Cost values. The issue became particularly important because Shipping Cost contributes to logistics analysis and is also used when calculating Net Profit. Removing these records would have reduced the completeness of the dataset and could have affected the downstream analysis.
+
+The missing values were first isolated in Power Query so I could understand the extent of the problem before deciding how to handle them.
+
+**Initial Investigation**
+
+Rather than immediately filling the missing values with an overall average, I investigated whether an existing business variable could provide a reasonable basis for estimating them.
+
+My initial direction was to investigate Shipping Method, which contained three main categories: Air, Road, and Sea. I filtered the dataset by each shipping method and compared the available Quantity and Shipping Cost values within each group.
+
+**Shipping Method by Road**
+![Filtered Shipping Method by Road](images/filtered-shipping-method-by-road.png)
+
+**Shipping Method by Sea**
+![Filtered Shipping Method by Sea](images/filtered-shipping-method-by-sea.png)
+
+**Shipping Method by Air**
+![Filtered Shipping Method by Air](images/filtered-shipping-method-by-air.png)
+
+The investigation showed that Shipping Cost varied considerably even within the same shipping method. Similar quantities could have substantially different shipping costs, and the available data did not provide a consistent enough pattern for Shipping Method alone to serve as a reliable basis for estimating the missing values.
+
+This was an important point in the cleaning process because it changed my initial assumption. Instead of forcing Shipping Method into the estimation process, I continued investigating the dataset for a variable that could provide a more defensible basis for the calculation.
+
+Using Product Name to Estimate Missing Shipping Costs
+
+After further exploration, I selected Product Name as the grouping variable. Products can have different handling, packaging, and transportation characteristics, making Product Name a more reasonable basis for estimating shipping cost than Shipping Method alone.
+
+I first calculated the shipping cost per unit for records where Shipping Cost was available:
+**Unit Shipping Cost**
+'''Shipping Cost ÷ Quantity
+
+This created a common measure that could be compared across transactions with different quantities.
+
+I then created a duplicate Power Query query and grouped the available records by *Product Name* to calculate the Average Unit Shipping Cost for each product. The resulting lookup table was then merged back into the cleaned dataset using *Product Name*.
